@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.bean.Users;
+
 public class Repo {
 
 	private static Statement stmt = null;
@@ -43,11 +45,20 @@ public class Repo {
 		return k;
 	}
 
-	public ResultSet getEmployeeDetails(String select) throws SQLException {
+	public ResultSet getUsersDetails(String select) throws SQLException {
 
 		String sql = "select user_name,user_email from Users where role = '" + select + "' ;";
 		ResultSet res = stmt.executeQuery(sql);
 		return res;
+	}
+	
+	
+	public boolean createAdmin(Users u) throws SQLException {
+		
+		String sql = "insert into Users values ( '"+u.getUser_name()+"' , '"+u.getuser_email()+"' , '"+u.getPassword()+"' , '"+u.getRole()+"' );";
+		int k = stmt.executeUpdate(sql);
+		return k>0;
+		
 	}
 
 }

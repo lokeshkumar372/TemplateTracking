@@ -26,8 +26,10 @@ public class AdminValidate extends HttpServlet {
 		Map<String, String> m = new HashMap<>();
 		Repo r = new Repo();
 		
+		
+		
 		try {
-			ResultSet rs = r.getEmployeeDetails(select);
+			ResultSet rs = r.getUsersDetails(select);
 			while(rs.next()) {
 				m.put(rs.getString(1), rs.getString(2));
 			}
@@ -49,5 +51,9 @@ public class AdminValidate extends HttpServlet {
 			rd = req.getRequestDispatcher("jsp/superadmin.jsp");
 			rd.include(req, res);
 		}
+	}
+	
+	public void delete(HttpServletRequest req,HttpServletResponse res) {
+		String id = req.getParameter("id");
 	}
 }
