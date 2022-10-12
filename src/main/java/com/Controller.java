@@ -1,6 +1,7 @@
 package com;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import com.bean.Users;
@@ -14,58 +15,35 @@ import jakarta.servlet.http.*;
 
 @WebServlet(value = "/Controller", loadOnStartup = 1)
 public class Controller extends HttpServlet {
-
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		res.setContentType("text/html");
+		RequestDispatcher rd = null;
 
 		String name = req.getParameter("name");
 		String password = req.getParameter("password");
 		Repo r = new Repo();
+		PrintWriter out = res.getWriter();
 		String res1 = null;
 		try {
 			res1 = r.check(name, password);
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			out.print("Sorry enter the correct details!");
+			rd = req.getRequestDispatcher("index.html");
+			rd.include(req, res);
 		}
-		if (res1 != null) {
-			Users u = new Users();
-			u.setuser_email(name);
-			u.setPassword(password);
+		String select = "select";
+		req.setAttribute("select", select);
+		if (res1.equals("admin")) {
+			rd = req.getRequestDispatcher("jsp/admin.jsp");
+			rd.forward(req, res);
 
-			req.setAttribute("user", u);
-			RequestDispatcher rd = null;
-			if (res1.equals("admin")) {
-				rd = req.getRequestDispatcher("jsp/admin.jsp");
+		} else if (res1.equals("employee")) {
+			rd = req.getRequestDispatcher("jsp/employee.jsp");
+			rd.forward(req, res);
 
-			} else if (res1.equals("employee")) {
-				rd = req.getRequestDispatcher("jsp/employee.jsp");
-
-			} else if (res1.equals("super admin")) {
-				rd = req.getRequestDispatcher("jsp/superadmin.jsp");
-
-			} else {
-				rd = req.getRequestDispatcher("jsp/error.jsp");
-			}
+		} else if (res1.equals("super admin")) {
+			rd = req.getRequestDispatcher("jsp/superadmin.jsp");
 			rd.forward(req, res);
 		}
 	}
-
-//	@GET
-//	@Path("/login")
-//	public Response check(@QueryParam("name") String name, @QueryParam("password") String pass) throws SQLException {
-//		String role = null;
-//		Repo r = new Repo();
-//		role = r.check(name, pass);
-//		if (role != null) {
-//			if (role.equals("employee")) {
-//
-//			} else if (role.equals("admin")) {
-//				
-//			}
-//			return Response.ok("Your role is : " + role).build();
-//		} else {
-//			return Response.ok().build();
-//		}
-//	}
-
 }

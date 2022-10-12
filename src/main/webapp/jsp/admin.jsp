@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +21,8 @@
         </div>
         
     </div>
-    <%@ page import="com.bean.Users" %>
+    <%--<%@ page import="com.bean.Users" %>
     <jsp:useBean id = "user" class="com.bean.Users"/>
-	<%= "Name: "+user.getUser_name()+"Password: "+user.getPassword() %>
-	
-    
+	<%= "Name: "+user.getUser_name()+"Password: "+user.getPassword() %> --%> 
 </body>
 </html>

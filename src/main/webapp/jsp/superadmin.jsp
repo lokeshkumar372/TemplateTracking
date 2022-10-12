@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,10 +27,10 @@
 					<label for="option">Choose the details you want to know
 						about :</label> <select name="option" class="options">
 						<option value="select">Select</option>
+						<option value="super admin">Super Admin</option>
 						<option value="admin">Admin</option>
 						<option value="employee">Employee</option>
-					</select> <br>
-					<br>
+					</select> <br> <br>
 					<div class="admin-submit-div">
 						<input type="submit" value="Submit">
 					</div>
@@ -39,7 +40,22 @@
 
 
 		</div>
-		<div class="data"></div>
+		<div class="data">
+			<%
+			if(request.getAttribute("select") != "select"){
+			Map<String, String> m = (Map<String, String>) request.getAttribute("data");
+			for (Map.Entry<String, String> me : m.entrySet()) {
+			%>
+			<tr>
+				<td><%=me.getKey()%></td>
+				<td><%=me.getValue()%></td>
+				<input type="submit" value="Delete">
+			</tr>
+			<%
+			}
+			}
+			%>
+		</div>
 	</div>
 </body>
 </html>
