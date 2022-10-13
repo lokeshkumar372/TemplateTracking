@@ -15,7 +15,9 @@
 
 		<div class="parent-create-options">
 			<div class="child-create-option-admin">
-				<input class="button" type="submit" value="Create Admin">
+			<!-- <a href="index.html"></a> -->
+			<input  class="button" type="submit" value="Create Admin">
+				
 			</div>
 			<div class="child-create-option-employee">
 				<input class="button" type="submit" value="Create Employee">

@@ -6,7 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+<<<<<<< HEAD:src/main/java/com/DataOperations.java
 public class DataOperations {
+=======
+import com.bean.Users;
+
+public class Repo {
+>>>>>>> 324c080a69022d73491493a30f1766b13cae8371:src/main/java/com/Repo.java
 
 	private static Statement stmt = null;
 	private static Connection con = null;
@@ -43,11 +49,24 @@ public class DataOperations {
 		return k;
 	}
 
+<<<<<<< HEAD:src/main/java/com/DataOperations.java
 	public ResultSet getUserDetails(String select) throws SQLException {
+=======
+	public ResultSet getUsersDetails(String select) throws SQLException {
+>>>>>>> 324c080a69022d73491493a30f1766b13cae8371:src/main/java/com/Repo.java
 
 		String sql = "select user_name,user_email from Users where role = '" + select + "' ;";
 		ResultSet res = stmt.executeQuery(sql);
 		return res;
+	}
+	
+	
+	public boolean createAdmin(Users u) throws SQLException {
+		
+		String sql = "insert into Users values ( '"+u.getUser_name()+"' , '"+u.getuser_email()+"' , '"+u.getPassword()+"' , '"+u.getRole()+"' );";
+		int k = stmt.executeUpdate(sql);
+		return k>0;
+		
 	}
 
 }

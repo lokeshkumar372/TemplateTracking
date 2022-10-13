@@ -24,11 +24,21 @@ public class AdminValidate extends HttpServlet {
 //		out.print(select);
 
 		Map<String, String> m = new HashMap<>();
+<<<<<<< HEAD
 		DataOperations r = new DataOperations();
 
 		try {
 			ResultSet rs = r.getUserDetails(select);
 			while (rs.next()) {
+=======
+		Repo r = new Repo();
+		
+		
+		
+		try {
+			ResultSet rs = r.getUsersDetails(select);
+			while(rs.next()) {
+>>>>>>> 324c080a69022d73491493a30f1766b13cae8371
 				m.put(rs.getString(1), rs.getString(2));
 			}
 			req.setAttribute("select", select);
@@ -41,5 +51,9 @@ public class AdminValidate extends HttpServlet {
 		rd = req.getRequestDispatcher("jsp/superadmin.jsp");
 		rd.include(req, res);
 
+	}
+	
+	public void delete(HttpServletRequest req,HttpServletResponse res) {
+		String id = req.getParameter("id");
 	}
 }
