@@ -5,10 +5,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import com.bean.Users;
 
 public class DataOperations {
-
 
 	private static Statement stmt = null;
 	private static Connection con = null;
@@ -33,7 +33,7 @@ public class DataOperations {
 		if (con == null)
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Project;encrypt=true;"
-				+ "trustServerCertificate=true;user=sa;password=Dbase@123");
+				+ "trustServerCertificate=true;user=NewSA;password=Dbase@1234");
 		return con;
 	}
 
@@ -46,7 +46,6 @@ public class DataOperations {
 	}
 
 	public ResultSet getUsersDetails(String select) throws SQLException {
-
 
 		String sql = "select user_name,user_email from Users where role = '" + select + "' ;";
 		ResultSet res = stmt.executeQuery(sql);
@@ -63,4 +62,3 @@ public class DataOperations {
 	}
 
 }
-

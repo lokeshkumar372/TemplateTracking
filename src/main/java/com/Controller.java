@@ -26,24 +26,26 @@ public class Controller extends HttpServlet {
 		String res1 = null;
 		try {
 			res1 = r.check(name, password);
+			String select = "select";
+			req.setAttribute("select", select);
+			if (res1.equals("admin")) {
+				rd = req.getRequestDispatcher("jsp/admin.jsp");
+				rd.forward(req, res);
+
+			} else if (res1.equals("employee")) {
+				rd = req.getRequestDispatcher("jsp/employee.jsp");
+				rd.forward(req, res);
+
+			} else if (res1.equals("super admin")) {
+				rd = req.getRequestDispatcher("jsp/superadmin.jsp");
+				rd.forward(req, res);
+			}
 		} catch (SQLException e) {
-			out.print("Sorry enter the correct details!");
-			rd = req.getRequestDispatcher("index.html");
+			Error e1 = new Error();
+			req.setAttribute("error", e1.returnHTML());
+			rd = req.getRequestDispatcher("index.jsp");
 			rd.include(req, res);
 		}
-		String select = "select";
-		req.setAttribute("select", select);
-		if (res1!=null && res1.equals("admin")) {
-			rd = req.getRequestDispatcher("jsp/admin.jsp");
-			rd.forward(req, res);
-
-		} else if (res1!=null && res1.equals("employee")) {
-			rd = req.getRequestDispatcher("jsp/employee.jsp");
-			rd.forward(req, res);
-
-		} else if (res1!=null && res1.equals("super admin")) {
-			rd = req.getRequestDispatcher("jsp/superadmin.jsp");
-			rd.forward(req, res);
-		}
+		
 	}
 }

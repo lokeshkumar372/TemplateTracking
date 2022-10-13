@@ -2,13 +2,14 @@ package com;
 
 import java.io.IOException;
 import java.util.function.Supplier;
+
 import com.bean.Users;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 
-public class CreateAdmin extends HttpServlet{
+public class CreateUser extends HttpServlet{
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		res.setContentType("text/html");

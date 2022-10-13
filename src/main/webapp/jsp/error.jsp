@@ -9,7 +9,10 @@
 </head>
 <body>
 <div style= "border: 2px solidblack">
-<%= "Sorry Enter the correct Input " %>
+Sorry Please enter the correct details ...!
+<%--<% RequestDispatcher rd = request.getRequestDispatcher("../index.jsp"); 
+rd.include(request,response);
+%> --%>
 </div>
 </body>
 </html>
