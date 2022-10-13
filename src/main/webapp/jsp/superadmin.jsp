@@ -41,20 +41,39 @@
 
 		</div>
 		<div class="data">
-			<%
-			if(request.getAttribute("select") != "select"){
-			Map<String, String> m = (Map<String, String>) request.getAttribute("data");
-			for (Map.Entry<String, String> me : m.entrySet()) {
-			%>
-			<tr>
-				<td><%=me.getKey()%></td>
-				<td><%=me.getValue()%></td>
-				<input type="submit" value="Delete">
-			</tr>
-			<%
-			}
-			}
-			%>
+		<%		
+		if(request.getAttribute("select").equals("select")){
+			out.print("Select an option");
+		}
+		else if (!request.getAttribute("select").equals("select")) {
+						%>
+			<table>
+				<thead>
+					<tr>
+						<th>User Name</th>
+						<th>User Email</th>
+
+						<th>Delete</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<%
+						Map<String, String> m = (Map<String, String>) request.getAttribute("data");
+						for (Map.Entry<String, String> me : m.entrySet()) {
+					%>
+					<tr>
+						<td><%=me.getKey()%></td>
+						<td><%=me.getValue()%></td>
+						<td><input type="button" value="Delete"></td>
+					</tr>
+					<%
+					}
+					}
+					%>
+				</tbody>
+			</table>
+
 		</div>
 	</div>
 </body>
