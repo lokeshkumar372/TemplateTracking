@@ -11,7 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
-@WebServlet(value = "/AdminValidate", loadOnStartup = 1)
+@WebServlet(value = "/Validate", loadOnStartup = 1)
 public class Validate extends HttpServlet {
 
 	public void doGet(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException {
@@ -19,9 +19,6 @@ public class Validate extends HttpServlet {
 		RequestDispatcher rd = null;
 		
 		String select = req.getParameter("option");
-		
-//		PrintWriter out = res.getWriter();
-//		out.print(select);
 		
 		Map<String, String> m = new HashMap<>();
 		DataOperations r = new DataOperations();

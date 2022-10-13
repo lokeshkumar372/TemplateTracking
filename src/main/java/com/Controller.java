@@ -26,8 +26,6 @@ public class Controller extends HttpServlet {
 		String res1 = null;
 		try {
 			res1 = r.check(name, password);
-			String select = "select";
-			req.setAttribute("select", select);
 			if (res1.equals("admin")) {
 				rd = req.getRequestDispatcher("jsp/admin.jsp");
 				rd.forward(req, res);

@@ -53,12 +53,19 @@ public class DataOperations {
 	}
 	
 	
-	public boolean createAdmin(Users u) throws SQLException {
+	public boolean createUser(Users u) throws SQLException {
 		
 		String sql = "insert into Users values ( '"+u.getUser_name()+"' , '"+u.getuser_email()+"' , '"+u.getPassword()+"' , '"+u.getRole()+"' );";
 		int k = stmt.executeUpdate(sql);
 		return k>0;
 		
+	}
+	
+	public boolean deleteEntry(String email) throws SQLException {
+		String sql = "Delete from Users where user_email= '"+email+"' ;";
+		int k = stmt.executeUpdate(sql);
+		
+		return k>0;
 	}
 
 }
