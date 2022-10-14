@@ -34,7 +34,7 @@ public class Controller extends HttpServlet {
 				rd = req.getRequestDispatcher("jsp/employee.jsp");
 				rd.forward(req, res);
 
-			} else if (res1.equals("super admin")) {
+			} else if (res1.equals("super_admin")) {
 				rd = req.getRequestDispatcher("jsp/superadmin.jsp");
 				rd.forward(req, res);
 			}

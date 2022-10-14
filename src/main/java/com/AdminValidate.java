@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+import com.bean.Users;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,18 +22,27 @@ public class AdminValidate extends HttpServlet {
 
 		String select = req.getParameter("option");
 
-		Map<String, String> m = new HashMap<>();
-
+//		Map<String, String> m = new HashMap<>();
+		List<Users> m = new ArrayList();
+		Users u;
+		
 		DataOperations r = new DataOperations();		
 		
 		try {
 			ResultSet rs = r.getUsersDetails(select);
 			while(rs.next()) {
-
-				m.put(rs.getString(1), rs.getString(2));
+//				System.out.println("hello");
+				u=new Users();
+				u.setUser_id(rs.getInt(1));
+				u.setUser_name(rs.getString(2));
+				u.setuser_email(rs.getString(3));
+				u.setRole(select);
+				u.setPassword("");
+				m.add(u);
+//				m.put(rs.getString(1), rs.getString(2));
 			}
 			req.setAttribute("select", select);
-			req.setAttribute("data", m);
+			req.setAttribute("data1", m);
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

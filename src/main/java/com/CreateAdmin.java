@@ -25,11 +25,11 @@ public class CreateAdmin extends HttpServlet{
 		u.setUser_name(Username);
 		u.setRole("admin");
 		DataOperations r = new DataOperations();
-		try {
-		 ans = r.createAdmin(u);
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
+//		try {
+//		 ans = r.createAdmin(u);
+//		}catch(Exception e) {
+//			System.out.println(e.getMessage());
+//		}
 		
 		if(ans) {
 			rd = req.getRequestDispatcher("jsp/success.jsp");

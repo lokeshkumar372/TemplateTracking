@@ -33,7 +33,7 @@ public class DataOperations {
 		if (con == null)
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Project;encrypt=true;"
-				+ "trustServerCertificate=true;user=NewSA;password=Dbase@1234");
+				+ "trustServerCertificate=true;user=sa;password=Dbase@123");
 		return con;
 	}
 
@@ -47,7 +47,7 @@ public class DataOperations {
 
 	public ResultSet getUsersDetails(String select) throws SQLException {
 
-		String sql = "select user_name,user_email from Users where role = '" + select + "' ;";
+		String sql = "select * from Users where role = '" + select + "' ;";
 		ResultSet res = stmt.executeQuery(sql);
 		return res;
 	}
@@ -66,6 +66,10 @@ public class DataOperations {
 		int k = stmt.executeUpdate(sql);
 		
 		return k>0;
+	}
+	public static void delete(String string) throws SQLException {
+		String sql = "Delete from Users where user_id= '"+string+"' ;";
+		int k = stmt.executeUpdate(sql);
 	}
 
 }

@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+import com.bean.Users;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,7 +22,9 @@ public class Validate extends HttpServlet {
 		
 		String select = req.getParameter("option");
 		
-		Map<String, String> m = new HashMap<>();
+//		Map<String, String> m = new HashMap<>();
+		List<Users> m = new ArrayList();
+		Users u;
 		DataOperations r = new DataOperations();
 		
 		
@@ -28,7 +32,18 @@ public class Validate extends HttpServlet {
 		try {
 			ResultSet rs = r.getUsersDetails(select);
 			while(rs.next()) {
-				m.put(rs.getString(1), rs.getString(2));
+				//System.out.println("hello");
+				u=new Users();
+				
+				u.setUser_id(rs.getInt(1));
+				u.setUser_name(rs.getString(2));
+				u.setuser_email(rs.getString(3));
+				u.setRole(select);
+				u.setPassword("");
+				m.add(u);
+				//System.out.println("hello");
+
+//				m.put(rs.getString(1), rs.getString(2));
 			}
 			req.setAttribute("select", select);
 			req.setAttribute("data", m);
@@ -44,7 +59,7 @@ public class Validate extends HttpServlet {
 		else if(select.equals("admin")) {
 			rd = req.getRequestDispatcher("jsp/superadmin.jsp");
 			rd.include(req, res);
-		}else if(select.equals("super admin")) {
+		}else if(select.equals("super_admin")) {
 			rd = req.getRequestDispatcher("jsp/superadmin.jsp");
 			rd.include(req, res);
 		}
