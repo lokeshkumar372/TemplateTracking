@@ -52,17 +52,8 @@ public class Validate extends HttpServlet {
 			System.out.println("Admin Validate: "+e.getMessage());
 		}
 		
-		if(select.equals("employee")) {
-			rd = req.getRequestDispatcher("jsp/superadmin.jsp");
-			rd.include(req, res);
-		}
-		else if(select.equals("admin")) {
-			rd = req.getRequestDispatcher("jsp/superadmin.jsp");
-			rd.include(req, res);
-		}else if(select.equals("super_admin")) {
-			rd = req.getRequestDispatcher("jsp/superadmin.jsp");
-			rd.include(req, res);
-		}
+		rd = req.getRequestDispatcher("jsp/superadmin.jsp");
+		rd.forward(req, res);
 	}
 	
 	public void delete(HttpServletRequest req,HttpServletResponse res) {

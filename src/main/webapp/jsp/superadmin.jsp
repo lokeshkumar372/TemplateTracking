@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,com.bean.Users,com.DataOperations"%>
+<%@ page import="java.util.*,com.bean.Users,com.DataOperations,jakarta.servlet.http.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -166,7 +166,7 @@ body {
 			<div class="child-create-option-employee">
 				<a class="button" type="submit" value="Create Employee"
 					href="jsp/createUser.jsp?role=employee">Create Employee</a>
-			</div>
+			</div><%-- --%>
 		</div>
 		<div class="admin-employee-details">
 			<div class="admin-form-div">
@@ -189,6 +189,9 @@ body {
 		</div>
 		<div class="data">
 			<%
+			Cookie ck[]=request.getCookies();
+			System.out.println("id : "+ck[0].getValue()+" "+ck[1].getValue());
+			
 			Map<String, String[]> map = request.getParameterMap();
 			if (map.get("option") != null) {
 			%>

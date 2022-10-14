@@ -50,7 +50,8 @@ public class CreateUser extends HttpServlet{
 			sendEmail(u);	
 			
 			rd = req.getRequestDispatcher("jsp/success.jsp");
-			rd.forward(req, res);
+//			rd.include(req, res);
+			res.sendRedirect("jsp/success.jsp");
 		}else {
 			rd = req.getRequestDispatcher("jsp/error.jsp");
 			rd.forward(req, res);

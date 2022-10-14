@@ -37,12 +37,21 @@ public class DataOperations {
 		return con;
 	}
 
-	public String check(String name, String Password) throws SQLException {
-		ResultSet res = stmt.executeQuery("select role from Users where user_email = " + "'" + name + "'"
+	public Users check(String name, String Password) throws SQLException {
+		ResultSet res = stmt.executeQuery("select * from Users where user_email = " + "'" + name + "'"
 				+ " and password = " + "'" + Password + "'" + ";");
-		res.next();
-		String k = res.getString(1);
-		return k;
+		Users u=null;
+		if(res.next()) {
+			 u=new Users();
+			u.setUser_id(res.getInt(1));
+			u.setUser_name(res.getString(2));
+			u.setuser_email(res.getString(3));
+			u.setPassword(res.getString(4));
+			u.setRole(res.getString(5));
+		}
+		
+		
+		return u;
 	}
 
 	public ResultSet getUsersDetails(String select) throws SQLException {
