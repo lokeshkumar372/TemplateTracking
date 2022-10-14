@@ -17,7 +17,7 @@
         <div class="admin-options">
             <a href="createTemplate.jsp"><input class="button" type="submit" value="Create Template"></a>
             <input class="button" type="submit" value="Employee Details"> 
-            <input class="button" type="submit" value="Assign Template"> 
+            <a href="../assignTemplateDetails"><input class="button" type="submit" value="Assign Template"> </a>
         </div>
         
     </div>

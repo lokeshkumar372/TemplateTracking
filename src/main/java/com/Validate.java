@@ -30,21 +30,7 @@ public class Validate extends HttpServlet {
 		
 		
 		try {
-			ResultSet rs = r.getUsersDetails(select);
-			while(rs.next()) {
-				//System.out.println("hello");
-				u=new Users();
-				
-				u.setUser_id(rs.getInt(1));
-				u.setUser_name(rs.getString(2));
-				u.setuser_email(rs.getString(3));
-				u.setRole(select);
-				u.setPassword("");
-				m.add(u);
-				//System.out.println("hello");
-
-//				m.put(rs.getString(1), rs.getString(2));
-			}
+			m = r.getUsersDetails(select);
 			req.setAttribute("select", select);
 			req.setAttribute("data", m);
 			
