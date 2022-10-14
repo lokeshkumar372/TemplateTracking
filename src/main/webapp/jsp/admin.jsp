@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
- <link rel="stylesheet" href="css/admin.css">
+ <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
     <div class="admin-container">
@@ -15,7 +15,7 @@
         </div>
 
         <div class="admin-options">
-            <input class="button" type="submit" value="Create Template"> 
+            <a href="createTemplate.jsp"><input class="button" type="submit" value="Create Template"></a>
             <input class="button" type="submit" value="Employee Details"> 
             <input class="button" type="submit" value="Assign Template"> 
         </div>

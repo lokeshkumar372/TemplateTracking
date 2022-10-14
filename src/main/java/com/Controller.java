@@ -27,8 +27,10 @@ public class Controller extends HttpServlet {
 		try {
 			res1 = r.check(name, password);
 			if (res1.equals("admin")) {
-				rd = req.getRequestDispatcher("jsp/admin.jsp");
-				rd.forward(req, res);
+//				rd = req.getRequestDispatcher("jsp/admin.jsp");
+//				rd.forward(req, res);
+				
+				res.sendRedirect("jsp/admin.jsp");
 
 			} else if (res1.equals("employee")) {
 				rd = req.getRequestDispatcher("jsp/employee.jsp");
@@ -44,6 +46,6 @@ public class Controller extends HttpServlet {
 			rd = req.getRequestDispatcher("index.jsp");
 			rd.include(req, res);
 		}
-		
+//		doGet(req, res)
 	}
 }

@@ -50,7 +50,7 @@
       </div>
         <h1>Success</h1> 
         <p>We have sent you the credentials to your email<br/> Thanks!</p>
-      <a class="login"href="Controller?name=pavani%40gmail.com&password=pavani123">Back to page</a> 
+      <a class="login"href="jsp/superadmin.jsp">Back to page</a> 
       </div>
       
     </body>

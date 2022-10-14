@@ -17,8 +17,6 @@
   
 <div class="left">
     <div class="form_div">
-      
-      <!-- <form action="http://localhost:8081/TemplateTracking/proj/login"> -->
       <form action="Controller">
         <div class="form-item item1">Get Started</div>
         <label class="form-input"> 
