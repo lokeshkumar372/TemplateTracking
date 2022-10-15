@@ -25,6 +25,14 @@ public class Topic {
 		this.topic_name = topic_name;
 	}
 
+	public int getTemplate_id() {
+		return template_id;
+	}
+
+	public void setTemplate_id(int template_id) {
+		this.template_id = template_id;
+	}
+
 	@Override
 	public String toString() {
 		return "Topic [topic_id=" + topic_id + ", template_id=" + template_id + ", topic_name=" + topic_name + "]";
@@ -46,6 +54,14 @@ public class Topic {
 		Topic other = (Topic) obj;
 		return template_id == other.template_id && topic_id == other.topic_id
 				&& Objects.equals(topic_name, other.topic_name);
+	}
+
+	public static Topic getTopic(int int1, int int2, String string) {
+		Topic t=new Topic();
+		t.setTopic_id(int1);
+		t.setTemplate_id(int2);
+		t.setTopic_name(string);
+		return t;
 	}
 
 }

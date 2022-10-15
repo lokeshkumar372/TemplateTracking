@@ -7,7 +7,15 @@ public class StatusTable {
 	int template_id;
 	int user_id;
 	int topic_id;
+	public String getStatus() {
+		return Status;
+	}
 
+	public void setStatus(String status) {
+		Status = status;
+	}
+
+	String Status;
 	
 
 	public int getStatus_id() {
@@ -63,5 +71,16 @@ public class StatusTable {
 	public String toString() {
 		return "StatusTable [status_id=" + status_id + ", template_id=" + template_id + ", user_id=" + user_id
 				+ ", topic_id=" + topic_id + "]";
+	}
+
+	public static StatusTable getStatusTable(int int1, int int2, int int3,int int4, String string) {
+		StatusTable st=new StatusTable();
+		st.setTemplate_id(int1);
+		st.setUser_id(int2);
+		st.setTopic_id(int3);
+		st.setStatus_id(int4);
+		st.setStatus(string);
+		
+		return st;
 	}
 }

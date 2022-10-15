@@ -7,9 +7,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
+import com.bean.StatusTable;
 import com.bean.Template;
+import com.bean.Topic;
 import com.bean.Users;
 
 public class DataOperations {
@@ -44,24 +51,16 @@ public class DataOperations {
 				+ "trustServerCertificate=true;user=sa;password=Dbase@123");
 		return con;
 	}
-
+	
 	public Users check(String name, String Password) throws SQLException {
 		ResultSet res = stmt.executeQuery("select * from Users where user_email = " + "'" + name + "'"
 				+ " and password = " + "'" + Password + "'" + ";");
 		Users u=null;
 		if(res.next()) {
-			 u=new Users();
-			u.setUser_id(res.getInt(1));
-			u.setUser_name(res.getString(2));
-			u.setuser_email(res.getString(3));
-			u.setPassword(res.getString(4));
-			u.setRole(res.getString(5));
-		}
-		
-		
+			u=Users.getUser(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5));
+		}		
 		return u;
 	}
-
 	public List<Users> getUsersDetails(String select) throws SQLException {
 
 		String sql = "select * from Users where role = '" + select + "' ;";
@@ -69,12 +68,7 @@ public class DataOperations {
 		List<Users> list=new ArrayList();
 		Users u=null;
 		while(res.next()) {
-			 u=new Users();
-			u.setUser_id(res.getInt(1));
-			u.setUser_name(res.getString(2));
-			u.setuser_email(res.getString(3));
-			u.setPassword(res.getString(4));
-			u.setRole(res.getString(5));
+			u=Users.getUser(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5));
 			list.add(u);
 		}
 		//System.out.println(list);
@@ -132,9 +126,18 @@ public class DataOperations {
 		List<Template> list=new ArrayList();
 		Template t=null;
 		while(res.next()) {
-			 t=new Template();
-			t.setTemplate_id(res.getInt(1));
-			t.setTemplate_name(res.getString(2));
+			 t=Template.getTemplate(res.getInt(1), res.getString(2));
+			list.add(t);
+		}
+		return list;
+	}
+	public static List<Topic> getTopicByTemplateId(int template_id) throws SQLException {
+		String sql = "select * from topic where template_id="+template_id+";";
+		ResultSet res = stmt.executeQuery(sql);
+		List<Topic> list=new ArrayList();
+		Topic t=null;
+		while(res.next()) {
+			 t=Topic.getTopic(res.getInt(1),res.getInt(2), res.getString(3));
 			list.add(t);
 		}
 		return list;
@@ -148,15 +151,28 @@ public class DataOperations {
 		}
 		return list;
 	}
-
+	 
+	public static Map<Integer,StatusTable> getStatusByTemplateIdAndUserId(int user_id,int template_id) throws SQLException{
+		Map<Integer,StatusTable> map=new TreeMap();
+		String sql="select * from StatusTable where user_id="+user_id+" and template_id="+template_id+";";
+		ResultSet rs=stmt.executeQuery(sql);
+		while(rs.next()) {
+			StatusTable st=StatusTable.getStatusTable(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5));
+			map.put(st.getTopic_id(), st);
+		}
+		return map;
+		
+	}
 	public static void createStatus(int temp_id, int emp_id, List<Integer> list) throws SQLException {
-		pstmt=getpreparedStatement("insert into StatusTable values(?,?,?)");
+		pstmt=getpreparedStatement("insert into StatusTable (template_id,user_id,topic_id) values(?,?,?)");
 		System.out.println("list="+list);
 
 		for(int i:list) {
 			pstmt.setInt(1, temp_id);
 			pstmt.setInt(2, emp_id);
 			pstmt.setInt(3, i);
+			
+
 			System.out.println(pstmt.executeUpdate());
 			
 
@@ -165,5 +181,23 @@ public class DataOperations {
 
 	}
 	
+	public static Map<Integer,Set<Template>> EmployeeIdMapTemplates() throws SQLException{
+		Map<Integer,Set<Template>> map=new HashMap();
+		String sql="select s.user_id,t.template_name,t.template_id from Template as t,StatusTable as s where s.template_id=t.template_id;";
+		ResultSet rs=stmt.executeQuery(sql);
+		Set<Template> set;
+		Template t;
+		while(rs.next()) {
+			int user_id=rs.getInt(1);
+			t=Template.getTemplate(rs.getInt(3),rs.getString(2));
+			
+				set=map.getOrDefault(user_id,new TreeSet<Template>());
+				set.add(t);
+				map.put(user_id, set);
+		}
+		return map;
+	}
+	
 }
+
 

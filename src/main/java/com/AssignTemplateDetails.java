@@ -31,7 +31,7 @@ public class AssignTemplateDetails extends HttpServlet{
 
 			req.setAttribute("templates",tname);
 			RequestDispatcher rd=req.getRequestDispatcher("jsp/assignTemplate.jsp");
-			rd.forward(req, resp);
+			rd.include(req, resp);
 //			System.out.println("hellloo");
 			
 			

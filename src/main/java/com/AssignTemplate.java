@@ -38,9 +38,9 @@ public class AssignTemplate extends HttpServlet
 				System.out.println(e.getMessage());
 			}
 			PrintWriter out=resp.getWriter();
-			
+			out.println("<div style=\"color:green;\">Template Assigned Successfully</div> ");
 			RequestDispatcher rd=req.getRequestDispatcher("assignTemplateDetails");
-			rd.forward(req, resp);
+			rd.include(req, resp);
 		}
 		else {
 			PrintWriter out=resp.getWriter();
