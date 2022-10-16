@@ -73,14 +73,19 @@ public class StatusTable {
 				+ ", topic_id=" + topic_id + "]";
 	}
 
-	public static StatusTable getStatusTable(int int1, int int2, int int3,int int4, String string) {
-		StatusTable st=new StatusTable();
-		st.setTemplate_id(int1);
-		st.setUser_id(int2);
-		st.setTopic_id(int3);
-		st.setStatus_id(int4);
-		st.setStatus(string);
-		
-		return st;
+	public StatusTable(int int1, int int2, int int3,int int4, String string) {
+		this.template_id=int1;
+		this.user_id=int2;
+		this.topic_id=int3;
+		this.status_id=int4;
+		this.Status=string;
+//		StatusTable st=new StatusTable();
+//		st.setTemplate_id(int1);
+//		st.setUser_id(int2);
+//		st.setTopic_id(int3);
+//		st.setStatus_id(int4);
+//		st.setStatus(string);
+//		
+//		return st;
 	}
 }

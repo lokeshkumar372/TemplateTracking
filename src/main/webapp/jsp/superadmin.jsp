@@ -189,8 +189,6 @@ body {
 		</div>
 		<div class="data">
 			<%
-			Cookie ck[]=request.getCookies();
-			System.out.println("id : "+ck[0].getValue()+" "+ck[1].getValue());
 			
 			Map<String, String[]> map = request.getParameterMap();
 			if (map.get("option") != null) {

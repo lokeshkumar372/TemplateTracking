@@ -56,6 +56,21 @@ a:visited {
 .button-div {
 	align-self: flex-end;
 }
+tr{
+padding:4px;
+}
+td{
+padding:4px
+}
+ul{
+padding:0px;
+width :100%;
+}
+li{
+width:100%;
+display: flex;
+justify-content: space-between;
+}
 </style>
 </head>
 <body>
@@ -95,7 +110,10 @@ a:visited {
 										Template t = it.next();
 								%>
 								<li><a
-									href=<%="Status?user_id=" + u.getUser_id() + "&template_id=" + t.getTemplate_id()%>><%=t.getTemplate_name()%></a></li>
+									href=<%="Status?user_id=" + u.getUser_id() + "&template_id=" + t.getTemplate_id()%>><%=t.getTemplate_name()%></a>
+									<a
+									href=<%="DeleteAssignedTemplate?user_id=" + u.getUser_id() + "&template_id=" + t.getTemplate_id()%>>delete</a>
+									</li>
 								<%
 								}
 								} else {

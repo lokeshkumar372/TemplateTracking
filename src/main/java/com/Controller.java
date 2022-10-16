@@ -27,10 +27,10 @@ public class Controller extends HttpServlet {
 		try {
 			Users u = r.check(name, password);
 			if (u != null) {
-				Cookie ck = new Cookie("user_id", Integer.toString(u.getUser_id()));
-				Cookie ck1 = new Cookie("user_role", u.getRole());
-				res.addCookie(ck1);
-				res.addCookie(ck);
+		        HttpSession session=req.getSession();  
+		        session.setAttribute("user_id", u.getUser_id());
+		        session.setAttribute("role", u.getRole());
+
 
 				res1 = u.getRole();
 				if (res1.equals("admin")) {
@@ -39,7 +39,7 @@ public class Controller extends HttpServlet {
 					res.sendRedirect("jsp/admin.jsp");
 
 				} else if (res1.equals("employee")) {
-					rd = req.getRequestDispatcher("jsp/employee.jsp");
+					rd = req.getRequestDispatcher("EmployeeTemplateDetails");
 					rd.forward(req, res);
 //					res.sendRedirect("jsp/employee.jsp");
 

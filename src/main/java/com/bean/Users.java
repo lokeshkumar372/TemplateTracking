@@ -8,14 +8,22 @@ public class Users {
 	String user_email;
 	String password;
 	String role;
-	public static Users getUser(int id, String name, String email, String password, String role) {
-		 Users u=new Users();
-			u.setUser_id(id);
-			u.setUser_name(name);
-			u.setuser_email(email);
-			u.setPassword(password);
-			u.setRole(role);
-		return u;
+	public Users() {
+		
+	}
+	public  Users(int id, String name, String email, String password, String role) {
+		this.user_id=id;
+		this.user_name=name;
+		this.user_email=email;
+		this.password=password;
+		this.role=role;
+//		 Users u=new Users();
+//			u.setUser_id(id);
+//			u.setUser_name(name);
+//			u.setuser_email(email);
+//			u.setPassword(password);
+//			u.setRole(role);
+//		return u;
 	}
 	public int getUser_id() {
 		return user_id;

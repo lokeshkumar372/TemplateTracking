@@ -57,7 +57,7 @@ public class DataOperations {
 				+ " and password = " + "'" + Password + "'" + ";");
 		Users u=null;
 		if(res.next()) {
-			u=Users.getUser(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5));
+			u=new Users(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5));
 		}		
 		return u;
 	}
@@ -68,8 +68,7 @@ public class DataOperations {
 		List<Users> list=new ArrayList();
 		Users u=null;
 		while(res.next()) {
-			u=Users.getUser(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5));
-			list.add(u);
+			list.add(new Users(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5)));
 		}
 		//System.out.println(list);
 		
@@ -124,10 +123,8 @@ public class DataOperations {
 		String sql = "select * from Template;";
 		ResultSet res = stmt.executeQuery(sql);
 		List<Template> list=new ArrayList();
-		Template t=null;
 		while(res.next()) {
-			 t=Template.getTemplate(res.getInt(1), res.getString(2));
-			list.add(t);
+			list.add(new Template(res.getInt(1), res.getString(2)));
 		}
 		return list;
 	}
@@ -135,10 +132,8 @@ public class DataOperations {
 		String sql = "select * from topic where template_id="+template_id+";";
 		ResultSet res = stmt.executeQuery(sql);
 		List<Topic> list=new ArrayList();
-		Topic t=null;
 		while(res.next()) {
-			 t=Topic.getTopic(res.getInt(1),res.getInt(2), res.getString(3));
-			list.add(t);
+			list.add(new Topic(res.getInt(1),res.getInt(2), res.getString(3)));
 		}
 		return list;
 	}
@@ -157,8 +152,7 @@ public class DataOperations {
 		String sql="select * from StatusTable where user_id="+user_id+" and template_id="+template_id+";";
 		ResultSet rs=stmt.executeQuery(sql);
 		while(rs.next()) {
-			StatusTable st=StatusTable.getStatusTable(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5));
-			map.put(st.getTopic_id(), st);
+			map.put(rs.getInt(3), new StatusTable(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5)));
 		}
 		return map;
 		
@@ -181,21 +175,40 @@ public class DataOperations {
 
 	}
 	
+	public static List<Template> getAssignedTemplatesByUserId(int id) throws SQLException{
+		List<Template> list=new ArrayList();
+		String sql="select distinct t.template_id,t.template_name from Template as t, StatusTable as s where s.user_id="+id+" and t.template_id=s.template_id;";
+		ResultSet rs=stmt.executeQuery(sql);
+		while(rs.next()) {
+			list.add(new Template(rs.getInt(1),rs.getString(2)));
+		}
+		return list;
+		
+	}
+	
+	public static boolean deleteAssignTemplate(int user_id,int template_id) throws SQLException {
+		String sql="delete from StatusTable where user_id="+user_id+" and template_id="+template_id+";";
+		int count=stmt.executeUpdate(sql);
+		return count!=0;
+	}
+	
 	public static Map<Integer,Set<Template>> EmployeeIdMapTemplates() throws SQLException{
 		Map<Integer,Set<Template>> map=new HashMap();
-		String sql="select s.user_id,t.template_name,t.template_id from Template as t,StatusTable as s where s.template_id=t.template_id;";
+		String sql="select distinct s.user_id,t.template_name,t.template_id from Template as t,StatusTable as s where s.template_id=t.template_id;";
 		ResultSet rs=stmt.executeQuery(sql);
 		Set<Template> set;
-		Template t;
 		while(rs.next()) {
 			int user_id=rs.getInt(1);
-			t=Template.getTemplate(rs.getInt(3),rs.getString(2));
-			
 				set=map.getOrDefault(user_id,new TreeSet<Template>());
-				set.add(t);
+				set.add(new Template(rs.getInt(3),rs.getString(2)));
 				map.put(user_id, set);
 		}
 		return map;
+	}
+	public static boolean updateStatusByStatusId(int status_id, String status) throws SQLException {
+		String sql="Update StatusTable set status='"+status+"' where status_id="+status_id+";";
+		int count=stmt.executeUpdate(sql);
+		return count!=0;
 	}
 	
 }

@@ -5,11 +5,13 @@ import java.util.Objects;
 public class Template implements Comparable{
 	int template_id;
 	String template_name;
-public static Template getTemplate(int id,String name) {
-	Template t=new Template();
-	t.setTemplate_id(id);
-	t.setTemplate_name(name);
-	return t;
+public Template(int id,String name) {
+	this.template_id=id;
+	this.template_name=name;
+//	Template t=new Template();
+//	t.setTemplate_id(id);
+//	t.setTemplate_name(name);
+//	return t;
 }
 	public int getTemplate_id() {
 		return template_id;

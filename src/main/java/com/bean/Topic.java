@@ -56,12 +56,13 @@ public class Topic {
 				&& Objects.equals(topic_name, other.topic_name);
 	}
 
-	public static Topic getTopic(int int1, int int2, String string) {
-		Topic t=new Topic();
-		t.setTopic_id(int1);
-		t.setTemplate_id(int2);
-		t.setTopic_name(string);
-		return t;
+	public Topic(int int1, int int2, String string) {
+		
+		this.topic_id=int1;
+		this.template_id=int2;
+		this.topic_name=string;
+		
+		
 	}
 
 }
