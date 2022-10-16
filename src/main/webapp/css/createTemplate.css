@@ -1,81 +1,92 @@
 @charset "ISO-8859-1";
 
-body{
-    padding: 0; 
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body {
+	padding: 0;
+	margin: 0;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: rgb(118, 67, 165);
+	
 }
-.container{
-    height: 70vh;
-    width: 70vw;
-    border: 2px solid rgb(118, 67, 165);
+
+.container {
+	height: 70vh;
+	width: 70vw;
+	border: 2px solid rgb(118, 67, 165);
 }
-.welcome-div{
-    height: 10vh;
-    border: 1px solid rgb(118, 67, 165);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgb(118, 67, 165);
-    font-size: 2em;
+
+.welcome-div {
+	height: 10vh;
+	border: 1px solid rgb(118, 67, 165);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: rgb(118, 67, 165);
+	font-size: 2em;
 }
-.template-name{
-    height: 15vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgb(118, 67, 165);
-    color: rgb(118, 67, 165);
-    font-size: 1.25em;
+
+.template-name {
+	height: 15vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid rgb(118, 67, 165);
+	color: rgb(118, 67, 165);
+	font-size: 1.25em;
 }
-.topic-name{
-    height: 35vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgb(118, 67, 165);
-    flex-direction: column;
-    color: rgb(118, 67, 165);
-    font-size: 1em;
+
+.topic-name {
+	height: 35vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid rgb(118, 67, 165);
+	flex-direction: column;
+	color: rgb(118, 67, 165);
+	font-size: 1em;
 }
-.topic-name input{
-    width: 30vw;
+
+.topic-name input {
+	width: 30vw;
 }
-.form-submit{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 9vh;
-    border: 1px solid rgb(118, 67, 165);
+
+.form-submit {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 9vh;
+	border: 1px solid rgb(118, 67, 165);
 }
-.topic-input{
-    margin: 3px;
+
+.topic-input {
+	margin: 3px;
 }
+
 .button {
-    background: #5E5DF0;
-    border-radius: 999px;
-    box-shadow: #5E5DF0 0 10px 20px -10px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    /* font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif; */
-    font-size: 16px;
-    /* font-weight: 700; */
-    line-height: 24px;
-    opacity: 1;
-    outline: 0 solid transparent;
-    padding: 8px 18px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    width: fit-content;
-    word-break: break-word;
-    border: 0;
-    padding: 5px 30px 5px 30px;
-  }
-  .button:active{
-      transform: scale(0.8);
-  }
+	background: #5E5DF0;
+	border-radius: 999px;
+	box-shadow: #5E5DF0 0 10px 20px -10px;
+	box-sizing: border-box;
+	color: #FFFFFF;
+	cursor: pointer;
+	/* font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif; */
+	font-size: 16px;
+	/* font-weight: 700; */
+	line-height: 24px;
+	opacity: 1;
+	outline: 0 solid transparent;
+	padding: 8px 18px;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	width: fit-content;
+	word-break: break-word;
+	border: 0;
+	padding: 5px 30px 5px 30px;
+}
+
+.button:active {
+	transform: scale(0.8);
+}
