@@ -12,7 +12,7 @@
    .container{
     height: 90vh;
     width: 90vw;
-    border: 1px solid black;
+    border: 1px solid rgb(118, 67, 165);
 }
 body{
     margin: 0;
@@ -27,7 +27,9 @@ body{
     align-items: center;
     height: 10vh;
     font-size: 1.5rem;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(118, 67, 165);
+    color: rgb(118, 67, 165);
+   
 }
 .view-template{
     height: 15vh;
@@ -51,12 +53,14 @@ table {
     overflow-y: auto;
   }
   td, th {
-    border: 1px solid #dddddd;
+    border: 1px solid rgb(118, 67, 165);
     text-align: left;
     padding: 8px;
+    color: rgb(118, 67, 165);
   }
   tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color:#C8B6E2;
+    color: rgb(118, 67, 165);
   }
   .table-display-div{
     height: 40vh;
@@ -67,6 +71,40 @@ table {
     justify-content: center;
     height: 10vh;
   }
+  .button {
+	background: #5E5DF0;
+	border-radius: 999px;
+	box-shadow: #5E5DF0 0 10px 20px -10px;
+	box-sizing: border-box;
+	color: #FFFFFF;
+	cursor: pointer;
+	/* font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif; */
+	font-size: 16px;
+	/* font-weight: 700; */
+	line-height: 24px;
+	opacity: 1;
+	outline: 0 solid transparent;
+	padding: 8px 18px;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	width: fit-content;
+	word-break: break-word;
+	border: 0;
+	padding: 5px 30px 5px 30px;
+}
+
+.button:active {
+	transform: scale(0.8);
+}
+
+.select-option{
+	width: 20vw;
+	height:5vh;
+	margin: 20px;
+	border: 2px solid rgb(118, 67, 165);
+	color: rgb(118, 67, 165);
+}
    </style>
 </head>
 <body>
