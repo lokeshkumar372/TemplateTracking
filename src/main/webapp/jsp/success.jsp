@@ -38,7 +38,10 @@
         display: inline-block;
         margin: 0 auto;
       }
-
+		span {
+  content: "\2713";
+}
+		
       .login{
         text-decoration: none;
       }
@@ -46,7 +49,7 @@
     <body>
       <div class="card">
       <div style="border-radius:200px; height:200px; width:200px; background: #BFACE0; margin:0 auto;">
-        <i class="checkmark">✓</i>
+       <i class="checkmark">&#10003;</i>
       </div>
         <h1>Success</h1> 
         <p>We have sent you the credentials to your email<br/> Thanks!</p>

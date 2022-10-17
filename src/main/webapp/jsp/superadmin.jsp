@@ -90,6 +90,15 @@ body {
 
 .admin-submit-div {
 	margin-left: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.admin-form-div{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .admin-submit-div input {
