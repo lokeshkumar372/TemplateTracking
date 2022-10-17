@@ -90,15 +90,6 @@ body {
 
 .admin-submit-div {
 	margin-left: 20px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.admin-form-div{
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 .admin-submit-div input {
@@ -169,17 +160,17 @@ body {
 		<div class="parent-create-options">
 			<div class="child-create-option-admin">
 				<a class="button" type="submit" value="Create Admin"
-					href="jsp/createUser.jsp?role=admin">Create Admin</a>
+					href="http://localhost:8081/TemplateTrackingLokesh/jsp/createUser.jsp?role=admin">Create Admin</a>
 
 			</div>
 			<div class="child-create-option-employee">
 				<a class="button" type="submit" value="Create Employee"
-					href="jsp/createUser.jsp?role=employee">Create Employee</a>
-			</div><%-- --%>
+					href="http://localhost:8081/TemplateTrackingLokesh/jsp/createUser.jsp?role=employee">Create Employee</a>
+			</div>
 		</div>
 		<div class="admin-employee-details">
 			<div class="admin-form-div">
-				<form action="Validate">
+				<form action="http://localhost:8081/TemplateTrackingLokesh/Validate">
 					<label for="option">Choose the details you want to know
 						about :</label> <select name="option" class="options">
 						<option value="select">Select</option>
@@ -217,11 +208,9 @@ body {
 
 					<%
 					List<Users> m = (List<Users>) request.getAttribute("data");
-					System.out.print(m);
 
 					for (Users me : m) {
 						int id = me.getUser_id();
-						System.out.println(me.getRole());
 					%>
 					<tr>
 						<td><%=me.getUser_name()%></td>

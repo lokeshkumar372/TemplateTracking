@@ -35,7 +35,7 @@ public class DisplayUsers extends HttpServlet{
 			req.setAttribute("employeeDetails", list);
 			req.setAttribute("employeeTemplateMap", map);
 			RequestDispatcher rd=req.getRequestDispatcher("jsp/display_employee.jsp");
-			rd.forward(req, resp);
+			rd.include(req, resp);
 //			
 			
 		} catch (SQLException e) {

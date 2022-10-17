@@ -19,13 +19,13 @@ import com.bean.Template;
 import com.bean.Topic;
 import com.bean.Users;
 
-public class DataOperations {
+public class DataOperations1 {
 
 	private static Statement stmt = null;
 	private static PreparedStatement pstmt = null;
 	private static Connection con = null;
 
-	DataOperations() {
+	DataOperations1() {
 		try {
 			con = getConnection();
 			stmt = getStatement();
@@ -61,23 +61,27 @@ public class DataOperations {
 		}		
 		return u;
 	}
-	public static List<Users> getUsersDetails(String select) throws SQLException {
+	public List<Users> getUsersDetails(String select) throws SQLException {
 
 		String sql = "select * from Users where role = '" + select + "' ;";
 		ResultSet res = stmt.executeQuery(sql);
 		List<Users> list=new ArrayList();
+		Users u=null;
 		while(res.next()) {
 			list.add(new Users(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5)));
 		}
+		//System.out.println(list);
 		
 		return list;
 	}
 
-	public void createUser(Users u) throws SQLException {
+	public boolean createUser(Users u) throws SQLException {
 
 		String sql = "insert into Users values ( '" + u.getUser_name() + "' , '" + u.getuser_email() + "' , '"
 				+ u.getPassword() + "' , '" + u.getRole() + "' );";
-		stmt.executeUpdate(sql);
+		int k = stmt.executeUpdate(sql);
+		return k > 0;
+
 	}
 
 	public boolean deleteEntry(String email) throws SQLException {
@@ -100,12 +104,9 @@ public class DataOperations {
 	}
 
 	public static void createTopics(String[] topics, int template_id) throws SQLException {
-		System.out.println(topics.length);
-		for(int i = 0; i < topics.length; i++) {
-			if(topics[i].length() > 0) {
-				String sql = "insert into Topic values ( '" + template_id + "' , '" + topics[i] + "' );";
-				stmt.executeUpdate(sql);
-			}
+		for (String topic : topics) {
+			String sql = "insert into Topic values ( '" + template_id + "' , '" + topic + "' );";
+			stmt.executeUpdate(sql);
 		}
 
 	}
@@ -137,7 +138,7 @@ public class DataOperations {
 		return list;
 	}
 	public static List<Integer> getTopicIdsByTemplate(int template_id) throws SQLException{
-		List<Integer> list=new ArrayList<>();
+		List<Integer> list=new ArrayList();
 		String sql="select topic_id from Topic where template_id="+template_id;
 		ResultSet rs=stmt.executeQuery(sql);
 		while(rs.next()) {
@@ -158,12 +159,17 @@ public class DataOperations {
 	}
 	public static void createStatus(int temp_id, int emp_id, List<Integer> list) throws SQLException {
 		pstmt=getpreparedStatement("insert into StatusTable (template_id,user_id,topic_id) values(?,?,?)");
+		System.out.println("list="+list);
 
 		for(int i:list) {
 			pstmt.setInt(1, temp_id);
 			pstmt.setInt(2, emp_id);
 			pstmt.setInt(3, i);
-			pstmt.executeUpdate();
+			
+
+			System.out.println(pstmt.executeUpdate());
+			
+
 		}
 		return;
 

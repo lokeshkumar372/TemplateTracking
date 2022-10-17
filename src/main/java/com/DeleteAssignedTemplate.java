@@ -1,6 +1,7 @@
 package com;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import jakarta.servlet.RequestDispatcher;
@@ -18,6 +19,12 @@ public class DeleteAssignedTemplate extends HttpServlet{
 		int template_id=Integer.parseInt(req.getParameter("template_id"));
 		try {
 			if(DataOperations.deleteAssignTemplate(user_id,template_id)) {
+				RequestDispatcher rd=req.getRequestDispatcher("DisplayUser");
+				rd.include(req, res);
+			}
+			else {
+				PrintWriter out=res.getWriter();
+				out.println("<div style=\"color:red;\">Entry Doesn't Exit</div> ");
 				RequestDispatcher rd=req.getRequestDispatcher("DisplayUser");
 				rd.include(req, res);
 			}

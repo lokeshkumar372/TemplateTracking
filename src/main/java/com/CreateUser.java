@@ -40,21 +40,14 @@ public class CreateUser extends HttpServlet{
 		
 		DataOperations r = new DataOperations();
 		try {
-		 ans = r.createUser(u);
+		 r.createUser(u);
+		 sendEmail(u);
+		 res.sendRedirect("jsp/success.jsp");
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		if(ans) {
 			
-			sendEmail(u);	
-			
-			rd = req.getRequestDispatcher("jsp/success.jsp");
-//			rd.include(req, res);
-			res.sendRedirect("jsp/success.jsp");
-		}else {
-			rd = req.getRequestDispatcher("jsp/error.jsp");
-			rd.forward(req, res);
+			req.setAttribute("error", Error.returnEmailAlreadyExists());
+			rd = req.getRequestDispatcher("jsp/createUser.jsp?role="+role);
+			rd.include(req, res);
 		}
 	}
 	
@@ -90,10 +83,10 @@ public class CreateUser extends HttpServlet{
             message.setSubject("Your login credentials");
             // Now set the actual message
             message.setText("Log in with this password : " + u.getPassword() + "\n" + "And Username is your email id");
-            System.out.println("sending...");
+//            System.out.println("sending...");
             // Send message
             Transport.send(message);
-            System.out.println("Sent message successfully....");
+//            System.out.println("Sent message successfully....");
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
