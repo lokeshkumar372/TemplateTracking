@@ -10,8 +10,6 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-//import jakarta.ws.rs.*;
-//import jakarta.ws.rs.core.Response;
 
 @WebServlet(value = "/Controller", loadOnStartup = 1)
 public class Controller extends HttpServlet {
@@ -25,17 +23,14 @@ public class Controller extends HttpServlet {
 		PrintWriter out = res.getWriter();
 		String res1 = null;
 		try {
-			Users u = r.check(name, password);
+			Users u = r.check(name, password);              // get the user details
 			if (u != null) {
-		        HttpSession session=req.getSession();  
-		        session.setAttribute("user_id", u.getUser_id());
-		        session.setAttribute("role", u.getRole());
-
+				HttpSession session = req.getSession();
+				session.setAttribute("user_id", u.getUser_id());
+				session.setAttribute("role", u.getRole());
 
 				res1 = u.getRole();
 				if (res1.equals("admin")) {
-//					rd = req.getRequestDispatcher("jsp/admin.jsp");
-//					rd.forward(req, res);
 					res.sendRedirect("jsp/admin.jsp");
 
 				} else if (res1.equals("employee")) {

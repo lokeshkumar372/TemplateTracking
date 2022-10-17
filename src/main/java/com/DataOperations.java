@@ -48,7 +48,7 @@ public class DataOperations {
 		if (con == null)
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Project;encrypt=true;"
-				+ "trustServerCertificate=true;user=sa;password=Dbase@123");
+				+ "trustServerCertificate=true;user=Newsa;password=Dbase@1234");
 		return con;
 	}
 	
@@ -70,7 +70,6 @@ public class DataOperations {
 		while(res.next()) {
 			list.add(new Users(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5)));
 		}
-		//System.out.println(list);
 		
 		return list;
 	}
@@ -105,6 +104,7 @@ public class DataOperations {
 
 	public static void createTopics(String[] topics, int template_id) throws SQLException {
 		for (String topic : topics) {
+			System.out.println("Topic:"+topic);
 			String sql = "insert into Topic values ( '" + template_id + "' , '" + topic + "' );";
 			stmt.executeUpdate(sql);
 		}

@@ -17,19 +17,16 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet(value = "/EmployeeTemplateDetails", loadOnStartup = 1)
 public class EmployeeTemplateDetails extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-//		int user_id=Integer.parseInt(req.getParameter("user_id"));
-		HttpSession session=req.getSession();  
-        int user_id=(int)session.getAttribute("user_id");
+		HttpSession session = req.getSession();
+		int user_id = (int) session.getAttribute("user_id");
 		try {
-			List<Template> templates=DataOperations.getAssignedTemplatesByUserId(user_id);
+			List<Template> templates = DataOperations.getAssignedTemplatesByUserId(user_id);
 			req.setAttribute("templates", templates);
-			req.setAttribute("templates", templates);
-			RequestDispatcher rd=req.getRequestDispatcher("jsp/employee.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("jsp/employee.jsp");
 			rd.include(req, res);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
-		
+
 	}
 }
