@@ -16,14 +16,14 @@ public class DeleteAssignedTemplate extends HttpServlet{
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		int user_id=Integer.parseInt(req.getParameter("user_id"));
 		int template_id=Integer.parseInt(req.getParameter("template_id"));
+		RequestDispatcher rd = null;
 		try {
-			if(DataOperations.deleteAssignTemplate(user_id,template_id)) {
-				RequestDispatcher rd=req.getRequestDispatcher("DisplayUser");
-				rd.include(req, res);
-			}
-		} catch (SQLException | ServletException | IOException e) {
-			System.out.println(e.getMessage());
+			DataOperations.deleteAssignTemplate(user_id,template_id);
+		} catch (Exception e) {
+			req.setAttribute("error", Error.returnAlreadyDeleted());
 		} 
+		rd = req.getRequestDispatcher("DisplayUser");
+		rd.include(req, res);
 		
 	}
 

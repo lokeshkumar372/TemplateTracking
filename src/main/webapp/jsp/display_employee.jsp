@@ -131,6 +131,10 @@ justify-content: space-between;
 				</tbody>
 
 			</table>
+			 
 		</div>
+		<div><% if(request.getAttribute("error") != null)
+        	out.println(request.getAttribute("error"));
+        	%></div>
 </body>
 </html>

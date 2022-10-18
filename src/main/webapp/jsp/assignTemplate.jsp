@@ -136,7 +136,6 @@ text-decoration:none;
 								<option value="select">Select</option>
 								<%
 								List<Users> emp_list = (List<Users>) request.getAttribute("employees");
-								//System.out.println("in jsp "+emp_list);
 								for (Users u : emp_list) {
 								%>
 								<option value=<%=u.getUser_id()%>><%=u.getUser_name()%></option>
@@ -166,8 +165,11 @@ text-decoration:none;
 						<input class="button" type="submit" name="">
 					</div>
 				</form>
+				<div><% if(request.getAttribute("error") != null)
+        	out.println(request.getAttribute("error"));
+        	%></div>
 			</div>
-
 		</div>
+		
 </body>
 </html>

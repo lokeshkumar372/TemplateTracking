@@ -23,7 +23,7 @@ public class Controller extends HttpServlet {
 		PrintWriter out = res.getWriter();
 		String res1 = null;
 		try {
-			Users u = r.check(name, password);              // get the user details
+			Users u = r.check(name, password); // get the user details
 			if (u != null) {
 				HttpSession session = req.getSession();
 				session.setAttribute("user_id", u.getUser_id());
@@ -36,17 +36,13 @@ public class Controller extends HttpServlet {
 				} else if (res1.equals("employee")) {
 					rd = req.getRequestDispatcher("EmployeeTemplateDetails");
 					rd.forward(req, res);
-//					res.sendRedirect("jsp/employee.jsp");
 
 				} else if (res1.equals("super_admin")) {
-					rd = req.getRequestDispatcher("jsp/superadmin.jsp");
-					rd.forward(req, res);
-//					res.sendRedirect("jsp/superadmin.jsp");
+					res.sendRedirect("jsp/superadmin.jsp");
 
 				}
 			} else {
-				Error e1 = new Error();
-				req.setAttribute("error", e1.returnHTML());
+				req.setAttribute("error", Error.returnLoginError());
 				rd = req.getRequestDispatcher("index.jsp");
 				rd.include(req, res);
 			}

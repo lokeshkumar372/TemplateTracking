@@ -38,15 +38,16 @@ public class AssignTemplate extends HttpServlet
 				System.out.println(e.getMessage());
 			}
 			PrintWriter out=resp.getWriter();
-			out.println("<div style=\"color:green;\">Template Assigned Successfully</div> ");
+			out.println("<div style='color:green;'>Template Assigned Successfully</div> ");
 			RequestDispatcher rd=req.getRequestDispatcher("assignTemplateDetails");
 			rd.include(req, resp);
 		}
 		else {
+			
 			PrintWriter out=resp.getWriter();
-			out.println("Sorry, Please select both options ");
-			RequestDispatcher rd=req.getRequestDispatcher("jsp/assignTemplate.jsp");
-			rd.include(req, resp);
+            out.println("<div style=\"color:red;\">Sorry, Please select both options</div> ");
+            RequestDispatcher rd=req.getRequestDispatcher("assignTemplateDetails");
+            rd.include(req, resp);
 		}
 
 	}

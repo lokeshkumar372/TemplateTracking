@@ -21,6 +21,7 @@
 .button{
 text-decoration: none;
 }
+
 </style>
 </head>
 <body>
@@ -34,7 +35,7 @@ text-decoration: none;
 				<form action="../CreateTemplate">
 					<div>
 						<div class="template-name">
-							<label for="">Enter Template name: </label> <input type="text"
+							<label for="">Enter Template name: </label> <input required id="tinput" type="text"
 								name="template">
 						</div>
 						<div class="topic-name">

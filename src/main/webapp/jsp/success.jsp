@@ -50,7 +50,7 @@
       </div>
         <h1>Success</h1> 
         <p>We have sent you the credentials to your email<br/> Thanks!</p>
-      <a class="login" href="../SuccessToSuperAdmin">Back to page</a> 
+      <a class="login" href="http://localhost:8081/TemplateTrackingLokesh/jsp/superadmin.jsp">Back to page</a> 
       </div>
       
     </body>

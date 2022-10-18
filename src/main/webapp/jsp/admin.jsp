@@ -22,8 +22,5 @@
 		</div>
 
 	</div>
-	<%--<%@ page import="com.bean.Users" %>
-    <jsp:useBean id = "user" class="com.bean.Users"/>
-	<%= "Name: "+user.getUser_name()+"Password: "+user.getPassword() %> --%>
 </body>
 </html>
